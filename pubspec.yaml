@@ -37,6 +37,10 @@ dependencies:
   google_fonts: ^3.0.1
   http: ^0.13.4
   provider: ^6.0.3
+  spacex_api: ^0.0.5
+
+dependency_overrides:
+  http: ^0.12.1
 
 
 dev_dependencies:
@@ -62,8 +66,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-   assets:
-    - assets/images/rocket-dynamic-color.png
+  #assets:
+   # - assets/images/rocket-dynamic-color.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
