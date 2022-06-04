@@ -1,6 +1,5 @@
 import 'package:spacex4bkool/models/rocket.dart';
 
-
 class Launch {
   final DateTime launchUTC;
   final Rocket rocket;
