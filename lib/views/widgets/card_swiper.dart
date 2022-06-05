@@ -60,7 +60,7 @@ class CardSwiper extends StatelessWidget {
             ),
           );
         },
-        itemCount: 10,
+        itemCount: 20,
       ),
     );
   }
