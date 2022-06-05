@@ -3,9 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:spacex4bkool/views/home.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp( MyApp());
 
 class MyApp extends StatelessWidget {
   @override
@@ -14,7 +12,7 @@ class MyApp extends StatelessWidget {
       title: 'Próximos lanzamientos',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
+        primarySwatch: Colors.grey,
         primaryColor: Colors.white,
         textTheme: TextTheme(
           bodyText2: TextStyle(color: Colors.white),
