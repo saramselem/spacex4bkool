@@ -5,21 +5,18 @@ import 'package:spacex4bkool/models/launch_model.dart';
 import 'package:http/http.dart' as http;
 
 class LaunchModelApi {
-  static Future<List<Launch>> getLaunch() async {
-    var uri = Uri.https('api.spacexdata.com', '/v4/launches/upcoming');
-      
-    final response = await http.get(uri, headers: {
-      "host": "api.spacexdata.com",
-      "useQueryString": "true"
-    });
+  
+    Future<Launch> fetchLaunch() async {
 
-    Map data = jsonDecode(response.body);
-    List _temp = [];
+    final response = await http.get('https://api.spacexdata.com/v3/launches/upcoming'); {
+     var json = convert.jsonDecode(response.body);
 
-    for (var i in data['feed']) {
-      _temp.add(i['content']['details']);
-    }
+    var launch = Launch.fromJson(json[0]);
 
-    return Launch.launchesFromSnapshot(_temp);
+    return launch;
   }
+
 }
+    };
+  
+   

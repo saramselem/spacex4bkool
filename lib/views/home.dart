@@ -7,7 +7,6 @@ import '../models/launch_model_api.dart';
 
 class HomePage extends StatefulWidget {
   @override
-  // ignore: library_private_types_in_public_api
   _HomePageState createState() => _HomePageState();
 }
 
@@ -26,41 +25,35 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _isLoading = false;
     });
-  
-  
-  
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Icon(Icons.rocket),
-              SizedBox(width:12),
-              Text('Próximos lanzamientos'),
-            ],
-          ),
-        ),
-        body: _isLoading
-        ? Center (child: CircularProgressIndicator())
-        : ListView.builder(
-          itemCount: _launches.length,
-          itemBuilder: (context,index){
-            return LaunchCard(
-              flight_number: _launches[index].flightNumber,
-              launch_date_utc: _launches[index].launchDateUtc,
-              rocketName: _launches[index].rocketName,
-              rocketType: _launches[index].rocketType,
-              detail: _launches[index].detail,
-            );
-          },   
-        ));
   }
-}
 
-  
+    @override
+    Widget build(BuildContext context) {
+      return Scaffold(
+          appBar: AppBar(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Icon(Icons.rocket),
+                SizedBox(width: 12),
+                Text('Próximos lanzamientos'),
+              ],
+            ),
+          ),
+          body: _isLoading
+              ? Center(child: CircularProgressIndicator())
+              : ListView.builder(
+                  itemCount: _launches.length,
+                  itemBuilder: (context, index) {
+                    return LaunchCard(
+                      flight_number: _launches[index].flightNumber,
+                      launch_date_utc: _launches[index].launchDateUtc,
+                      rocketName: _launches[index].rocketName,
+                      rocketType: _launches[index].rocketType,
+                      detail: _launches[index].detail,
+                    );
+                  },
+                ));
+    }
+  }
 
-  @override
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
