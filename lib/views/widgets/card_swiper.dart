@@ -1,9 +1,12 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper_tv/flutter_swiper.dart';
+import 'package:card_swiper/card_swiper.dart';
+
 import 'package:spacex4bkool/models/launch_model.dart';
 
 class CardSwiper extends StatelessWidget {
-  final List<Fairings> launches;
+  final List<Launch> launches;
 
   CardSwiper({required this.launches});
   @override
@@ -12,11 +15,11 @@ class CardSwiper extends StatelessWidget {
 
     return Container(
       padding: EdgeInsets.only(top: 10.0),
+      color: Colors.indigo,
       child: Swiper(
-        layout: SwiperLayout.STACK,
-        scrollDirection: Axis.vertical,
-        itemWidth: _screenSize.width * 0.7,
-        itemHeight: _screenSize.height * 0.5,
+        layout: SwiperLayout.TINDER,
+        itemWidth: 300.0,
+        itemHeight: 400.0,
         itemBuilder: (BuildContext context, int index) {
           if (launches.length <= 1) {
             return Container(
@@ -25,31 +28,39 @@ class CardSwiper extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () => Navigator.pushNamed(context, 'details',
                       arguments: launches[index]),
-                  child: FadeInImage(
-                    image: NetworkImage('assets/images/rocket-dynamic-color.png'),
-                    placeholder: AssetImage('assets/images/rocket-dynamic-color.png'),
-                    fit: BoxFit.cover,
+                  child: Text(
+                    launches[index].missionName,
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
             );
           }
           return Container(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20.0),
-              child: GestureDetector(
-                onTap: () => Navigator.pushNamed(context, 'detalle',
-                    arguments: launches[index]),
-                child: FadeInImage(
-                  image: NetworkImage('assets/images/rocket-dynamic-color.png'),
-                  placeholder: AssetImage('assets/img/no-image.jpg'),
-                  fit: BoxFit.cover,
+            child: Column(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(20.0),
+                  child: GestureDetector(
+                     onTap: () => Navigator.pushNamed(context, 'details',
+                         arguments: launches[index]),
+                    child: Image(
+                          image: NetworkImage(
+                          "https://danielmarin.naukas.com/files/2021/06/51171019709_19e6fc54b3_k.jpg")),
+                          ),
                 ),
-              ),
+                 Text(launches[index].missionName,
+                  overflow: TextOverflow.ellipsis),
+                 Text(launches[index].flightNumber.toString(),
+                  overflow: TextOverflow.ellipsis),
+              ],
             ),
           );
         },
-        itemCount: launches.length,
+        itemCount: 10,
       ),
     );
   }

@@ -2,48 +2,50 @@
 
 import 'package:flutter/material.dart';
 import 'package:spacex4bkool/views/widgets/card_swiper.dart';
-import 'package:spacex_api/models/launch/launch.dart';
 import '../models/launch_model.dart';
 import '../models/launch_model_api.dart';
 
 class HomePage extends StatefulWidget {
-  
-@override
+  @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
   final fetchLaunches = LaunchModelApi();
- 
+
   @override
   void initState() {
     super.initState();
     fetchLaunches.fetchLaunch();
   }
-    
-    @override
-    Widget build(BuildContext context) {
-      return Scaffold(
-          appBar: AppBar(
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Icon(Icons.rocket),
-                SizedBox(width: 12),
-                Text('Próximos lanzamientos'),
-              ],
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Icon(Icons.rocket),
+            SizedBox(width: 12),
+            Text('SpaceX API test'),
+          ],
+        ),
+      ),
+      body: Container(
+        child: Column(
+          children: [
+            _cardSwiper(),
+            Text(
+              'Próximos lanzamientos',
+              style: TextStyle(fontSize: 20),
             ),
-          ),
-          body: Container (
-            child: Column(
-              children: [
-                _cardSwiper(),
-              ],
-            ),
-          ),
-                
+          ],
+        ),
+      ),
     );
   }
+
   Widget _cardSwiper() {
     return FutureBuilder(
       future: fetchLaunches.fetchLaunch(),
