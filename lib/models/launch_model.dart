@@ -16,7 +16,7 @@ class Launch {
         detail: json['detail'] as String);
   }
 
-  static List<Launch> recipesFromSnapshot(List snapshot) {
+  static List<Launch> launchesFromSnapshot(List snapshot) {
     return snapshot.map((data) {
       return Launch.fromJson(data);
     }).toList();

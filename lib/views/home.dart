@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_literals_to_create_immutables, prefer_const_constructors, unused_element
+
 import 'package:flutter/material.dart';
 import 'package:spacex4bkool/views/widgets/launch_card.dart';
 import '../models/launch_model.dart';
@@ -5,6 +7,7 @@ import '../models/launch_model_api.dart';
 
 class HomePage extends StatefulWidget {
   @override
+  // ignore: library_private_types_in_public_api
   _HomePageState createState() => _HomePageState();
 }
 
@@ -56,9 +59,8 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
+  
+
   @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
-  }
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }

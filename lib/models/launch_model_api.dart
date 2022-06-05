@@ -1,3 +1,5 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+
 import 'dart:convert';
 import 'package:spacex4bkool/models/launch_model.dart';
 import 'package:http/http.dart' as http;
@@ -18,6 +20,6 @@ class LaunchModelApi {
       _temp.add(i['content']['details']);
     }
 
-    return Launch.recipesFromSnapshot(_temp);
+    return Launch.launchesFromSnapshot(_temp);
   }
 }
