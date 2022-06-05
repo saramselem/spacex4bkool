@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:spacex4bkool/views/home.dart';
 import 'package:spacex4bkool/views/widgets/launch_card.dart';
+import '../models/launch_model.dart';
+import '../models/launch_model_api.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -8,26 +9,56 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<Launch> _launches;
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    getLaunches();
+  }
+
+  Future<void> getLaunches() async {
+    _launches = await LaunchModelApi.getLaunch();
+    setState(() {
+      _isLoading = false;
+    });
+  
+  
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Icon(Icons.restaurant_menu),
-              SizedBox(width: 10),
+              Icon(Icons.rocket),
+              SizedBox(width:12),
               Text('Próximos lanzamientos'),
             ],
           ),
         ),
-        body: LaunchCard(
-          flight_number: '1',
-          launch_date_utc: '2020-01-01',
-          rocketName: 'Falcon 1',
-          rocketType: 'Falcon 1',
-          detail: 'Estoy improvisando',
-         
+        body: _isLoading
+        ? Center (child: CircularProgressIndicator())
+        : ListView.builder(
+          itemCount: _launches.length,
+          itemBuilder: (context,index){
+            return LaunchCard(
+              flight_number: _launches[index].flightNumber,
+              launch_date_utc: _launches[index].launchDateUtc,
+              rocketName: _launches[index].rocketName,
+              rocketType: _launches[index].rocketType,
+              detail: _launches[index].detail,
+            );
+          },   
         ));
+  }
+}
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
   }
 }

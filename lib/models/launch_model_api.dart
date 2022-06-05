@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:spacex4bkool/models/launch_model.dart';
 import 'package:http/http.dart' as http;
 
-class RecipeApi {
+class LaunchModelApi {
   static Future<List<Launch>> getLaunch() async {
     var uri = Uri.https('api.spacexdata.com', '/v4/launches/upcoming');
       
