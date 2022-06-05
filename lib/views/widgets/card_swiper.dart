@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:card_swiper/card_swiper.dart';
-
 import 'package:spacex4bkool/models/launch_model.dart';
 
 class CardSwiper extends StatelessWidget {
@@ -56,6 +55,7 @@ class CardSwiper extends StatelessWidget {
                   overflow: TextOverflow.ellipsis),
                  Text(launches[index].flightNumber.toString(),
                   overflow: TextOverflow.ellipsis),
+                 Text('Toca la tarjeta para más información'),
               ],
             ),
           );
